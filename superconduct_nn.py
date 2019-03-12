@@ -24,4 +24,6 @@ print("X_train shape = ", X.shape)
 print('y_train shape = ', y.shape)
 
 
+# The data need to be normalized
+
 print("Done")
