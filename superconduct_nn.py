@@ -23,8 +23,5 @@ print("X_train shape = ", X.shape)
 
 print('y_train shape = ', y.shape)
 
-model = Sequential(features=tf.layers.dense(
-    features, units=64, name="dense/1"))
-
 
 print("Done")
