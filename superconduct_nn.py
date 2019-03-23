@@ -1,29 +1,28 @@
+from sklearn.preprocessing import RobustScaler, StandardScaler
+from sklearn.model_selection import train_test_split
+import pandas as pd
+import sys
+import numpy as np
+
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-from tensorflow.keras.models import Sequential
-from sklearn.model_selection import train_test_split
-import pandas as pd
-import matplotlib.pyplot as plt
-import sys
-import seaborn as sns
+
+print(tf.__version__)
+
 
 if sys.platform == 'darwin':
     train_path = "/Users/mqa/Desktop/Dev/ML/introduction_to_ml_with_python/Data sets/superconduct/train.csv"
 else:
     train_path = "/home/axis/Desktop/ml_work/Data sets/superconduct/train.csv"
 
-X = pd.read_csv(train_path, index_col=0)
+dataset = pd.DataFrame(pd.read_csv(train_path, na_values="?",
+                                   comment='\t', sep=" ", skipinitialspace=True))
 
-y = X["critical_temp"]
+train_dataset = dataset.sample(frac=0.9, random_state=0)
+test_dataset = dataset.drop(train_dataset.index)
 
-X = X.drop(["critical_temp"], axis=1)
+print(train_dataset.shape)
+print(test_dataset.shape)
 
-print("X_train shape = ", X.shape)
-
-print('y_train shape = ', y.shape)
-
-
-# The data need to be normalized
-
-print("Done")
+print(train_dataset.head())
